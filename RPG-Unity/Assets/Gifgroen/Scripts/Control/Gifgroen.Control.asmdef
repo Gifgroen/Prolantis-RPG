@@ -1,0 +1,15 @@
+{
+    "name": "Control",
+    "references": [
+        "GUID:d46da60642e674d598e33a53d0528486"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

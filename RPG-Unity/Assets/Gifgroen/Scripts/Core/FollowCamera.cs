@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 
-namespace Gifgroen.Locomotion
+namespace Gifgroen.Core
 {
     public class FollowCamera : MonoBehaviour
     {
-        [SerializeField] private Camera mainCamera;
-
         [SerializeField] private Transform followTarget;
 
-        private void Update()
+        private void LateUpdate()
         {
             transform.position = followTarget.position;
         }
