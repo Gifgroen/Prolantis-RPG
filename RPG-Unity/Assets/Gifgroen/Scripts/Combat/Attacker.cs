@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Gifgroen.Combat
 {
-    public class Attacker : MonoBehaviour, IActionable
+    public class Attacker : MonoBehaviour, IAction
     {
         [SerializeField] private Transform currentTarget;
 
@@ -19,13 +19,13 @@ namespace Gifgroen.Combat
             }
 
             Movement.Movement m = GetComponent<Movement.Movement>();
-            if (Vector3.Distance(transform.position, currentTarget.position) > attackDistance)
+            if (Vector3.Distance(transform.position, currentTarget.position) >= attackDistance)
             {
                 m.MoveToDestination(currentTarget.position);
             }
             else
             {
-                m.StopMoving();
+                m.Cancel();
             }
         }
 
@@ -37,7 +37,6 @@ namespace Gifgroen.Combat
 
         public void Cancel()
         {
-            print("Cancelling attack!");
             currentTarget = null;
         }
     }

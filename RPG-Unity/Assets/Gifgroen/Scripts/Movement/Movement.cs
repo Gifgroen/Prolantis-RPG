@@ -1,14 +1,11 @@
-﻿// using Gifgroen.Combat;
-
-using System;
-using Gifgroen.Core;
+﻿using Gifgroen.Core;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Gifgroen.Movement
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class Movement : MonoBehaviour, IActionable
+    public class Movement : MonoBehaviour, IAction
     {
         [SerializeField] private NavMeshAgent navMeshAgent;
 
@@ -24,21 +21,16 @@ namespace Gifgroen.Movement
             actionScheduler.StartAction(this);
             MoveToDestination(destination);
         }
-        
+
         public void MoveToDestination(Vector3 destination)
         {
             navMeshAgent.destination = destination;
             navMeshAgent.isStopped = false;
         }
 
-        public void StopMoving()
-        {
-            navMeshAgent.isStopped = true;
-        }
-
         public void Cancel()
         {
-            print("Cancelling movement");
+            navMeshAgent.isStopped = true;
         }
     }
 }

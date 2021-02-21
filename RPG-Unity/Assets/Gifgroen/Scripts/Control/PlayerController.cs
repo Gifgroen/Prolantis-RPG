@@ -36,6 +36,7 @@ namespace Gifgroen.Control
                 {
                     continue;
                 }
+
                 if (Input.GetMouseButtonDown(0))
                 {
                     attacker.Attack(a);
@@ -55,6 +56,7 @@ namespace Gifgroen.Control
                 {
                     movement.StartMoveToDestination(hit.point);
                 }
+
                 return true;
             }
 
