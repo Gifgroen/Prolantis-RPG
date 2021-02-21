@@ -1,7 +1,8 @@
 {
     "name": "Gifgroen.Control",
     "references": [
-        "GUID:d46da60642e674d598e33a53d0528486"
+        "GUID:d46da60642e674d598e33a53d0528486",
+        "GUID:2de261bb8f27348a3835ed4e4d068f2c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
