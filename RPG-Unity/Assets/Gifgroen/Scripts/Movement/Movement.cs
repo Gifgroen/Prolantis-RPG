@@ -7,15 +7,25 @@ namespace Gifgroen.Movement
     [RequireComponent(typeof(NavMeshAgent))]
     public class Movement : MonoBehaviour, IAction
     {
+        private static readonly int ForwardSpeedId = Animator.StringToHash("forwardSpeed");
+
         [SerializeField] private NavMeshAgent navMeshAgent;
 
         [SerializeField] private ActionScheduler actionScheduler;
 
+        [SerializeField] private Animator animator;
+        
         private void OnValidate()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
+        private void Update()
+        {
+            Vector3 forwardSpeed = transform.InverseTransformDirection(navMeshAgent.velocity);
+            animator.SetFloat(ForwardSpeedId, forwardSpeed.z);
+        }
+        
         public void StartMoveToDestination(Vector3 destination)
         {
             actionScheduler.StartAction(this);
