@@ -1,11 +1,16 @@
-﻿using Gifgroen.Core;
+﻿using System.Runtime.InteropServices.WindowsRuntime;
+using Gifgroen.Core;
 using UnityEngine;
 
 namespace Gifgroen.Combat
 {
     public class Attacker : MonoBehaviour, IAction
     {
-        [SerializeField] private Transform currentTarget;
+        private static readonly int AttackAnimationId = Animator.StringToHash("attack");
+
+        private static readonly int StopAttackAnimationId = Animator.StringToHash("stopAttack");
+
+        [SerializeField] private Health currentTarget;
 
         [SerializeField] private float attackDistance = 2f;
 
@@ -13,9 +18,6 @@ namespace Gifgroen.Combat
 
         [SerializeField] private Animator animator;
 
-        
-        private static readonly int AttackTriggerKey = Animator.StringToHash("attack");
-        
         [SerializeField] private float attackInterval = 2f;
 
         [SerializeField] private float timeSinceLastAttack;
@@ -29,10 +31,15 @@ namespace Gifgroen.Combat
                 return;
             }
 
-            Movement.Movement m = GetComponent<Movement.Movement>();
-            if (Vector3.Distance(transform.position, currentTarget.position) >= attackDistance)
+            if (currentTarget.IsDead)
             {
-                m.MoveToDestination(currentTarget.position);
+                return;
+            }
+
+            Movement.Movement m = GetComponent<Movement.Movement>();
+            if (Vector3.Distance(transform.position, currentTarget.transform.position) >= attackDistance)
+            {
+                m.MoveToDestination(currentTarget.transform.position);
             }
             else
             {
@@ -43,32 +50,43 @@ namespace Gifgroen.Combat
 
         private void AttackBehaviour()
         {
+            transform.LookAt(currentTarget.transform);
             if (timeSinceLastAttack <= attackInterval)
             {
                 return;
             }
 
-            animator.SetTrigger(AttackTriggerKey);
+            animator.ResetTrigger(StopAttackAnimationId);
+            animator.SetTrigger(AttackAnimationId);
             timeSinceLastAttack = 0f;
+        }
+
+        public bool CanAttack(Attackable a)
+        {
+            return a.TryGetComponent(out Health h) && !h.IsDead;
         }
 
         public void Attack(Attackable a)
         {
             actionScheduler.StartAction(this);
-            currentTarget = a.transform;
+            currentTarget = a.GetComponent<Health>();
         }
 
         public void Cancel()
         {
             currentTarget = null;
+            animator.ResetTrigger(AttackAnimationId);
+            animator.SetTrigger(StopAttackAnimationId);
         }
 
-        void Hit()
+        private void Hit()
         {
-            if (currentTarget != null && currentTarget.TryGetComponent(out Health health))
+            if (currentTarget == null)
             {
-                health.TakeDamage(5);
+                return;
             }
+
+            currentTarget.TakeDamage(5);
         }
     }
 }

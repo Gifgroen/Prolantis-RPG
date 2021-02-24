@@ -13,10 +13,7 @@ namespace Gifgroen.Core
                 return;
             }
 
-            if (_currentAction != null)
-            {
-                _currentAction.Cancel();
-            }
+            _currentAction?.Cancel();
 
             _currentAction = a;
         }

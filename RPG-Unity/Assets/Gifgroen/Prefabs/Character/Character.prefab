@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5708084722795917625}
   - component: {fileID: 4351351485847049137}
   - component: {fileID: 3744020476798147803}
-  - component: {fileID: 5883256583357693218}
+  - component: {fileID: 7016280009730639668}
   - component: {fileID: 8970957937635257727}
   - component: {fileID: 5625825582049579397}
-  - component: {fileID: 7016280009730639668}
+  - component: {fileID: 7270258368429560061}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -77,7 +77,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5883256583357693218
+--- !u!114 &7016280009730639668
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,12 +86,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8453892254473338720}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08a24281a92bf489e8c19aba804261d6, type: 3}
+  m_Script: {fileID: 11500000, guid: ac9f399c2a35d4a79ac47ab249c354fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
-  movement: {fileID: 8970957937635257727}
-  attacker: {fileID: 5625825582049579397}
 --- !u!114 &8970957937635257727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +122,7 @@ MonoBehaviour:
   animator: {fileID: 3744020476798147803}
   attackInterval: 2
   timeSinceLastAttack: 0
---- !u!114 &7016280009730639668
+--- !u!114 &7270258368429560061
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,6 +131,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8453892254473338720}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac9f399c2a35d4a79ac47ab249c354fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 07bb56408a84e46cfb23c0ffc5fb4298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  current: 100
+  animator: {fileID: 3744020476798147803}

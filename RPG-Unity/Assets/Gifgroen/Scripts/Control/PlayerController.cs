@@ -31,8 +31,8 @@ namespace Gifgroen.Control
             RaycastHit[] results = Physics.RaycastAll(GetMouseRay());
             foreach (RaycastHit hit in results)
             {
-                Transform t = hit.transform;
-                if (!t.TryGetComponent(out Attackable a))
+                Component t = hit.transform;
+                if (!t.TryGetComponent(out Attackable a) || !attacker.CanAttack(a))
                 {
                     continue;
                 }
