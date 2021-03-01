@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-namespace Gifgroen.Combat
+namespace Gifgroen.Core
 {
     public class Health : MonoBehaviour
     {
@@ -10,7 +11,13 @@ namespace Gifgroen.Combat
 
         [SerializeField] private Animator animator;
 
+        private ActionScheduler actionScheduler;
         public bool IsDead => current == 0;
+
+        private void Start()
+        {
+            actionScheduler = GetComponent<ActionScheduler>();
+        }
 
         public void TakeDamage(float damage)
         {
@@ -18,6 +25,7 @@ namespace Gifgroen.Combat
             if (current == 0)
             {
                 animator.SetTrigger(DieAnimationId);
+                actionScheduler.CancelCurrentAction();
             }
         }
     }

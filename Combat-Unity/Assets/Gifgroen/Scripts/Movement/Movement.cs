@@ -14,7 +14,9 @@ namespace Gifgroen.Movement
         [SerializeField] private ActionScheduler actionScheduler;
 
         [SerializeField] private Animator animator;
-        
+
+        [SerializeField] private Health health;
+
         private void OnValidate()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
@@ -22,6 +24,7 @@ namespace Gifgroen.Movement
 
         private void Update()
         {
+            navMeshAgent.enabled = !health.IsDead;
             Vector3 forwardSpeed = transform.InverseTransformDirection(navMeshAgent.velocity);
             animator.SetFloat(ForwardSpeedId, forwardSpeed.z);
         }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gifgroen.Core;
+using UnityEngine;
 
 namespace Gifgroen.Combat
 {

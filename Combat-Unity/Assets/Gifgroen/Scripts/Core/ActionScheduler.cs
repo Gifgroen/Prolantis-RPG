@@ -4,18 +4,22 @@ namespace Gifgroen.Core
 {
     public class ActionScheduler : MonoBehaviour
     {
-        private IAction _currentAction;
+        private IAction currentAction;
 
         public void StartAction(IAction a)
         {
-            if (_currentAction == a)
+            if (currentAction == a)
             {
                 return;
             }
 
-            _currentAction?.Cancel();
+            currentAction?.Cancel();
+            currentAction = a;
+        }
 
-            _currentAction = a;
+        public void CancelCurrentAction()
+        {
+            StartAction(null);
         }
     }
 }

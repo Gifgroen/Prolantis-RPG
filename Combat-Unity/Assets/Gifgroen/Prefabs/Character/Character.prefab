@@ -104,6 +104,7 @@ MonoBehaviour:
   navMeshAgent: {fileID: 4351351485847049137}
   actionScheduler: {fileID: 7016280009730639668}
   animator: {fileID: 3744020476798147803}
+  health: {fileID: 7270258368429560061}
 --- !u!114 &5625825582049579397
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,7 @@
-﻿using Gifgroen.Combat;
+﻿using System;
+using Gifgroen.Combat;
 using UnityEngine;
+using Gifgroen.Core;
 
 namespace Gifgroen.Control
 {
@@ -11,8 +13,19 @@ namespace Gifgroen.Control
 
         [SerializeField] private Attacker attacker;
 
+        [SerializeField] private Health health;
+
+        private void Start()
+        {
+            health = GetComponent<Health>();
+        }
+
         private void Update()
         {
+            if (health.IsDead)
+            {
+                return;
+            }
             if (InteractWithCombat())
             {
                 return;
@@ -32,14 +45,14 @@ namespace Gifgroen.Control
             foreach (RaycastHit hit in results)
             {
                 Component t = hit.transform;
-                if (!t.TryGetComponent(out Attackable a) || !attacker.CanAttack(a))
+                if (!t.TryGetComponent(out Attackable a) || !attacker.CanAttack(a.gameObject))
                 {
                     continue;
                 }
 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButton(0))
                 {
-                    attacker.Attack(a);
+                    attacker.Attack(a.gameObject);
                 }
 
                 return true;
@@ -50,17 +63,17 @@ namespace Gifgroen.Control
 
         private bool InteractWithMovement()
         {
-            if (Physics.Raycast(GetMouseRay(), out RaycastHit hit))
+            if (!Physics.Raycast(GetMouseRay(), out RaycastHit hit))
             {
-                if (Input.GetMouseButton(0))
-                {
-                    movement.StartMoveToDestination(hit.point);
-                }
-
-                return true;
+                return false;
+            }
+            if (Input.GetMouseButton(0))
+            {
+                movement.StartMoveToDestination(hit.point);
             }
 
-            return false;
+            return true;
+
         }
 
         private Ray GetMouseRay()

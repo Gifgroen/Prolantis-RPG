@@ -15,6 +15,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   movement: {fileID: 3023141973100164224}
   attacker: {fileID: 1988787436290033786}
+  health: {fileID: 3561855113943517442}
 --- !u!1001 &6164131762081176063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82,6 +83,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8453892254473338720, guid: e5ab9db1d77f44a91873d1c361b04405,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5ab9db1d77f44a91873d1c361b04405, type: 3}
 --- !u!1 &2366966077264635551 stripped
@@ -112,5 +118,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2bba33dff594379b97dc0b37fb7219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3561855113943517442 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7270258368429560061, guid: e5ab9db1d77f44a91873d1c361b04405,
+    type: 3}
+  m_PrefabInstance: {fileID: 6164131762081176063}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2366966077264635551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07bb56408a84e46cfb23c0ffc5fb4298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

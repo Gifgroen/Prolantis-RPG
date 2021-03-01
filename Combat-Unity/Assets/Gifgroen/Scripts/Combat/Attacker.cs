@@ -20,7 +20,7 @@ namespace Gifgroen.Combat
 
         [SerializeField] private float attackInterval = 2f;
 
-        [SerializeField] private float timeSinceLastAttack;
+        [SerializeField] private float timeSinceLastAttack = Mathf.Infinity;
 
         private void Update()
         {
@@ -61,12 +61,12 @@ namespace Gifgroen.Combat
             timeSinceLastAttack = 0f;
         }
 
-        public bool CanAttack(Attackable a)
+        public bool CanAttack(GameObject a)
         {
             return a.TryGetComponent(out Health h) && !h.IsDead;
         }
 
-        public void Attack(Attackable a)
+        public void Attack(GameObject a)
         {
             actionScheduler.StartAction(this);
             currentTarget = a.GetComponent<Health>();
